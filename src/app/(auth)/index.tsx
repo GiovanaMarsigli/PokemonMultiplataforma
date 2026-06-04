@@ -8,40 +8,35 @@ import {
     Platform,
     KeyboardAvoidingView,
     ScrollView,
+    Alert,
 } from 'react-native';
 
-import  Button from '@/components/button';
+import Button from '@/components/button';
 import { Input } from '@/components/input';
 import { Pokeball } from '@/components/pokeball';
 import { PokeballLoading } from '@/components/pokeball-loading';
 import { Colors } from '@/constants/colors';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Index() {
     const [name, setName] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
-
-    const [isAlertVisible, setIsAlertVisible] = useState(false);
-    const [alertData, setAlertData] = useState({
-        title: '',
-        message: '',
-        type: 'error' as 'success' | 'error' | 'warning' | 'info',
-    });
+    const { signIn } = useAuth();
 
     function validateCredentials() {
         if (!name.trim() || !senha.trim()) {
-            setAlertData({
-                title: 'Campos obrigatórios',
-                message: 'Por favor, preencha o nome e a senha.',
-                type: 'warning',
-            });
-            setIsAlertVisible(true);
+            Alert.alert('Campos obrigatórios', 'Por favor, preencha o nome e a senha.');
             return;
         }
-        
-        if(name == 'admin' && senha == 'admin') {
+
+        const success = signIn(name, senha);
+
+        if (success) {
             setIsLoading(true);
-            router.push('/pokedex');
+            router.replace('/(app)/pokedex');
+        } else {
+            Alert.alert('Erro de login', 'Nome ou senha incorretos.');
         }
     }
 
@@ -69,7 +64,6 @@ export default function Index() {
                         <Text style={styles.logoText}>Pokemon Gibs e Mary</Text>
                         <Pokeball size={Platform.OS === 'web' ? 28 : 22} />
                     </View>
-                   
                 </View>
 
                 <View style={styles.card}>
@@ -97,8 +91,6 @@ export default function Index() {
 
                     <Button title="Entrar" onPress={validateCredentials} style={{ marginTop: 8 }} />
                 </View>
-
-                
             </ScrollView>
         </KeyboardAvoidingView>
     );
@@ -133,10 +125,6 @@ const styles = StyleSheet.create({
     logoText: {
         color: Colors.white, fontSize: isWeb ? 22 : 18, fontWeight: '900', letterSpacing: 2,
         fontFamily: Platform.OS === 'web' ? "'Press Start 2P', monospace" : undefined,
-    },
-    subtitle: {
-        color: Colors.whiteAlpha['40'], fontSize: isWeb ? 13 : 12,
-        textAlign: 'center', lineHeight: 20, maxWidth: 300,
     },
     card: {
         width: '100%', maxWidth: isWeb ? 440 : undefined,
