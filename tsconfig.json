@@ -11,6 +11,9 @@
       ],
       "@types/*": [
         "./src/@types/*"
+      ],
+      "@integration/*": [
+        "./src/@integration/*"
       ]
     }
   },

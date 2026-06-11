@@ -19,27 +19,38 @@ import { PokeballLoading } from '@/components/pokeball-loading';
 import { Colors } from '@/constants/colors';
 import { useAuth } from '@/context/AuthContext';
 
-export default function Index() {
+export default function Register() {
     const [name, setName] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
+    const [confirmarSenha, setConfirmarSenha] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
-    const { signIn } = useAuth();
+    const { signUp } = useAuth();
 
-    async function validateCredentials() {
-        if (!name.trim() || !senha.trim()) {
-            Alert.alert('Campos obrigatórios', 'Por favor, preencha o nome e a senha.');
+    async function handleRegister() {
+        if (!name.trim() || !senha.trim() || !confirmarSenha.trim()) {
+            Alert.alert('Campos obrigatórios', 'Por favor, preencha todos os campos.');
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            Alert.alert('Senhas diferentes', 'As senhas digitadas não coincidem.');
+            return;
+        }
+
+        if (senha.length < 6) {
+            Alert.alert('Senha fraca', 'A senha deve ter pelo menos 6 caracteres.');
             return;
         }
 
         setIsLoading(true);
 
-        const result = await signIn(name.trim(), senha);
+        const result = await signUp(name.trim(), senha);
 
         if (result.success) {
             router.replace('/(app)/pokedex');
         } else {
             setIsLoading(false);
-            Alert.alert('Erro de login', result.error ?? 'Nome ou senha incorretos.');
+            Alert.alert('Erro ao cadastrar', result.error ?? 'Tente um nome de usuário diferente.');
         }
     }
 
@@ -54,6 +65,7 @@ export default function Index() {
             <ScrollView
                 contentContainerStyle={styles.container}
                 keyboardShouldPersistTaps="handled">
+
                 {Platform.OS === 'web' && (
                     <>
                         <View style={styles.orbBlue} />
@@ -70,7 +82,7 @@ export default function Index() {
                 </View>
 
                 <View style={styles.card}>
-                    <Text style={styles.cardTitle}>LOGIN</Text>
+                    <Text style={styles.cardTitle}>CADASTRO</Text>
 
                     <View style={styles.fieldGroup}>
                         <Text style={styles.label}>Nome</Text>
@@ -92,15 +104,25 @@ export default function Index() {
                         />
                     </View>
 
-                    <Button title="Entrar" onPress={validateCredentials} style={{ marginTop: 8 }} />
+                    <View style={styles.fieldGroup}>
+                        <Text style={styles.label}>Confirmar Senha</Text>
+                        <Input
+                            placeholder=""
+                            secureTextEntry
+                            onChangeText={setConfirmarSenha}
+                            value={confirmarSenha}
+                        />
+                    </View>
 
-                    {/* Link para cadastro */}
+                    <Button title="Cadastrar" onPress={handleRegister} style={{ marginTop: 8 }} />
+
+                    {/* Link para voltar ao login */}
                     <TouchableOpacity
-                        onPress={() => router.push('/(auth)/register')}
-                        style={styles.registerLink}>
-                        <Text style={styles.registerLinkText}>
-                            Não tem conta?{' '}
-                            <Text style={styles.registerLinkBold}>Cadastrar</Text>
+                        onPress={() => router.back()}
+                        style={styles.loginLink}>
+                        <Text style={styles.loginLinkText}>
+                            Já tem conta?{' '}
+                            <Text style={styles.loginLinkBold}>Entrar</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -162,11 +184,11 @@ const styles = StyleSheet.create({
         color: Colors.whiteAlpha['50'], fontSize: 12,
         fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase',
     },
-    registerLink: { alignItems: 'center', paddingTop: 4 },
-    registerLinkText: {
+    loginLink: { alignItems: 'center', paddingTop: 4 },
+    loginLinkText: {
         color: Colors.whiteAlpha['50'], fontSize: 12, fontWeight: '600',
     },
-    registerLinkBold: {
+    loginLinkBold: {
         color: Colors.btnPrimary, fontWeight: '800',
     },
 });
