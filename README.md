@@ -8,7 +8,7 @@ Aplicativo multiplataforma de Pokémon desenvolvido com **React Native + Expo Ro
 
 | Nome | Função |
 |------|--------|
-| Gibran | Desenvolvimento |
+| Giovana Marsigli Rodrigues | Desenvolvimento |
 | Mariana Akemi Arashiro Santos Feitosa | Desenvolvimento |
 
 **Instituição:** Fatec Zona Leste — Análise e Desenvolvimento de Sistemas  
