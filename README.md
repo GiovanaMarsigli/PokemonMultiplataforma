@@ -1,4 +1,4 @@
-# 🎮 Pokemon Gibs e Mary
+# 🎮 Pokemon Gibs e Mari
 
 Aplicativo multiplataforma de Pokémon desenvolvido com **React Native + Expo Router**, com backend próprio hospedado na AWS.
 
