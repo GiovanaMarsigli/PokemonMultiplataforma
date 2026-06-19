@@ -41,7 +41,6 @@ const RECENT_CATCHES = [
     { index: 65,  nome: 'Alakazam',  imagem: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/65.png',  tipos: ['psychic'] },
 ];
 
-// ─── Stat Card ────────────────────────────────────────────────────────────────
 function StatCard({ label, value, accent }: { label: string; value: string | number; accent: string }) {
     return (
         <View style={[statCardStyles.container, { borderColor: accent + '35', backgroundColor: accent + '08' }]}>
@@ -56,7 +55,6 @@ const statCardStyles = StyleSheet.create({
     label: { color: '#ffffff40', fontSize: isWeb ? 7 : 6, fontWeight: '700', letterSpacing: 1, marginTop: 4, fontFamily: Platform.OS === 'web' ? "'Press Start 2P', monospace" : undefined },
 });
 
-// ─── Tab Visão Geral ──────────────────────────────────────────────────────────
 function OverviewTab({ accent, vitorias, derrotas }: { accent: string; vitorias: number; derrotas: number }) {
     const total = vitorias + derrotas;
     const winRate = total > 0 ? Math.round((vitorias / total) * 100) : 0;
@@ -81,7 +79,6 @@ function OverviewTab({ accent, vitorias, derrotas }: { accent: string; vitorias:
     );
 }
 
-// ─── Tab Insígnias ────────────────────────────────────────────────────────────
 function BadgesTab({ accent }: { accent: string }) {
     return (
         <View style={styles.tabContent}>
@@ -104,7 +101,6 @@ function BadgesTab({ accent }: { accent: string }) {
     );
 }
 
-// ─── Tab Pokémons ─────────────────────────────────────────────────────────────
 function PokemonsTab({ accent }: { accent: string }) {
     return (
         <View style={styles.tabContent}>

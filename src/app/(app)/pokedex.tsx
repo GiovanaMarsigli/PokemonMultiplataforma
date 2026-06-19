@@ -65,7 +65,6 @@ export default function Pokedex() {
                     styles.card,
                     {
                         borderColor: colors.accent + '70',
-                        // @ts-ignore
                         width: isWeb ? CARD_WIDTH : CARD_WIDTH,
                     },
                 ]}
@@ -122,7 +121,7 @@ export default function Pokedex() {
 
     return (
         <View style={styles.wrapper}>
-            {/* Fundo */}
+            {}
             {isWeb && (
                 <View style={styles.bg} pointerEvents="none">
                     <View style={styles.bgGrid}>
@@ -137,7 +136,7 @@ export default function Pokedex() {
                 </View>
             )}
 
-            {/* Header */}
+            {}
             <View style={styles.header}>
                 <View style={styles.headerLeft}>
                     <Text style={styles.headerDot}>●</Text>
@@ -148,7 +147,7 @@ export default function Pokedex() {
                 <Text style={styles.subtitle}>{pokemons.length} POKÉMONS</Text>
             </View>
 
-            {/* Grid */}
+            {}
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 {rows.map((row, rowIndex) => (
                     <View key={rowIndex} style={styles.row}>
@@ -166,7 +165,7 @@ export default function Pokedex() {
                 ))}
             </ScrollView>
 
-            {/* ── Navbar ── */}
+            {}
             <BottomNavbar />
         </View>
     );
@@ -188,7 +187,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: isWeb ? 24 : 14, paddingVertical: isWeb ? 16 : 10,
         borderBottomWidth: 1, borderBottomColor: '#ff6b3530', zIndex: 2,
-        // @ts-ignore
         backdropFilter: isWeb ? 'blur(10px)' : undefined,
         backgroundColor: 'rgba(10,10,15,0.85)',
     },
@@ -203,7 +201,6 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: 'rgba(18, 18, 28, 0.92)', borderRadius: isWeb ? 14 : 10, borderWidth: 1.5,
         padding: isWeb ? 12 : 8, gap: isWeb ? 8 : 6, overflow: 'hidden', position: 'relative',
-        // @ts-ignore
         backdropFilter: isWeb ? 'blur(12px)' : undefined,
         ...Platform.select({
             web: { boxShadow: '0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)', transition: 'transform 0.2s ease, box-shadow 0.2s ease' } as any,

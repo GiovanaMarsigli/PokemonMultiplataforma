@@ -64,7 +64,7 @@ export default function Index() {
                 <View style={styles.header}>
                     <View style={styles.logoRow}>
                         <Pokeball size={Platform.OS === 'web' ? 28 : 22} />
-                        <Text style={styles.logoText}>Pokemon Gibs e Mary</Text>
+                        <Text style={styles.logoText}>Pokemon Gibs e Mari</Text>
                         <Pokeball size={Platform.OS === 'web' ? 28 : 22} />
                     </View>
                 </View>
@@ -94,7 +94,7 @@ export default function Index() {
 
                     <Button title="Entrar" onPress={validateCredentials} style={{ marginTop: 8 }} />
 
-                    {/* Link para cadastro */}
+                    {}
                     <TouchableOpacity
                         onPress={() => router.push('/(auth)/register')}
                         style={styles.registerLink}>

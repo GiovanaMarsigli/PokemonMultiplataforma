@@ -232,7 +232,7 @@ export default function Battle() {
             </View>
 
             <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-                {/* Arena */}
+                {}
                 <View style={styles.arenaRow}>
                     <BattleCard pokemon={playerPoke} label={user?.toUpperCase() ?? 'VOCÊ'} currentHp={playerHps[playerIdx]} isActive fainted={!playerPoke.alive || playerHps[playerIdx] <= 0} />
                     <View style={styles.vsBlock}>
@@ -246,7 +246,7 @@ export default function Battle() {
                     <BattleCard pokemon={enemyPoke} label="INIMIGO" currentHp={enemyHps[enemyIdx]} isActive fainted={!enemyPoke.alive || enemyHps[enemyIdx] <= 0} />
                 </View>
 
-                {/* Resultado da rodada */}
+                {}
                 {roundResult && phase === 'result' && (
                     <View style={[styles.resultBox, {
                         borderColor: roundResult.winner === 'player' ? '#3bff6b44' : roundResult.winner === 'enemy' ? '#ff3b3b44' : '#ffd70044',
@@ -266,7 +266,7 @@ export default function Battle() {
                     </View>
                 )}
 
-                {/* Fim de batalha */}
+                {}
                 {phase === 'ended' && (
                     <View style={[styles.endBox, {
                         borderColor: battleWinner === 'player' ? '#3bff6b55' : '#ff3b3b55',
@@ -288,7 +288,7 @@ export default function Battle() {
                     </View>
                 )}
 
-                {/* Times em miniatura */}
+                {}
                 <View style={styles.teamsRow}>
                     {[{ team: playerTeam, hps: playerHps, idx: playerIdx, label: 'SEU TIME' }, { team: enemyTeam, hps: enemyHps, idx: enemyIdx, label: 'INIMIGO' }].map(({ team, hps, idx, label }) => (
                         <View key={label} style={styles.teamMini}>
@@ -311,7 +311,7 @@ export default function Battle() {
                     ))}
                 </View>
 
-                {/* Botão de ação */}
+                {}
                 {(phase === 'choosing' || phase === 'result') && (
                     <TouchableOpacity style={styles.fightBtn} onPress={phase === 'result' ? () => { setRoundResult(null); setPhase('choosing'); } : rollBattle} activeOpacity={0.8}>
                         <Text style={styles.fightBtnTxt}>{phase === 'result' ? '▶ PRÓXIMA RODADA' : '⚔ SORTEAR ATRIBUTO'}</Text>
@@ -323,7 +323,7 @@ export default function Battle() {
                     </View>
                 )}
 
-                {/* Log */}
+                {}
                 {battleLog.length > 0 && (
                     <View style={styles.logBox}>
                         <Text style={styles.logTitle}>◈ LOG DA BATALHA</Text>

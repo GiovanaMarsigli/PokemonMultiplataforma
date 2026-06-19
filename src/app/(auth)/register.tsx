@@ -116,7 +116,7 @@ export default function Register() {
 
                     <Button title="Cadastrar" onPress={handleRegister} style={{ marginTop: 8 }} />
 
-                    {/* Link para voltar ao login */}
+                    {}
                     <TouchableOpacity
                         onPress={() => router.back()}
                         style={styles.loginLink}>

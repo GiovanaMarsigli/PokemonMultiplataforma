@@ -15,11 +15,9 @@ type AuthContextData = {
     signOut: () => Promise<void>;
 };
 
-// ─── Context ──────────────────────────────────────────────────────────────────
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-// ─── Provider ─────────────────────────────────────────────────────────────────
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,7 +26,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [token, setToken] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Restaura sessão salva
     useEffect(() => {
         async function loadStorageData() {
             try {
@@ -57,7 +54,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loadStorageData();
     }, []);
 
-    // ── Login ──────────────────────────────────────────────────────────────────
     async function signIn(
         username: string,
         password: string
@@ -82,7 +78,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }
 
-    // ── Registro ───────────────────────────────────────────────────────────────
     async function signUp(
         username: string,
         password: string
@@ -109,7 +104,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }
 
-    // ── Logout ─────────────────────────────────────────────────────────────────
     async function signOut() {
         setUser(null);
         setUserId(null);
