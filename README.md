@@ -182,14 +182,3 @@ npx expo start
 
 Pressione `w` para abrir no navegador, ou escaneie o QR code com o Expo Go.
 
----
-
-## 🛠️ Tecnologias
-
-- React Native + Expo SDK
-- Expo Router (navegação por arquivos)
-- TypeScript
-- Axios (requisições HTTP)
-- AsyncStorage (persistência local)
-- PokeAPI (dados dos pokémons)
-- AWS API Gateway + Lambda + DynamoDB (backend)
