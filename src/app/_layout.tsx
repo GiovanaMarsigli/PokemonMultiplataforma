@@ -4,13 +4,12 @@ import { Platform } from "react-native";
 import { useEffect } from "react";
 import { PokeballLoading } from "@/components/pokeball-loading";
 
-// Componente separado para poder usar o useAuth (precisa estar dentro do AuthProvider)
+
 function RootNavigator() {
     const { isAuthenticated, isLoading } = useAuth();
 
     useEffect(() => {
-        if (isLoading) return; // Aguarda carregar o AsyncStorage
-
+        if (isLoading) return; 
         if (isAuthenticated) {
             router.replace('/(app)/pokedex');
         } else {

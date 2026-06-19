@@ -35,20 +35,16 @@ export async function login(credentials: AuthCredentials): Promise<AuthResponse>
     return response.data;
 }
 
-export async function getUserStats(userId: string, token: string): Promise<UserStats> {
-    const response = await api.get<UserStats>(`/auth/v1/stats/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+export async function getUserStats(userId: string, token?: string): Promise<UserStats> {
+    const response = await api.get<UserStats>(`/auth/v1/stats/${userId}`);
     return response.data;
 }
 
 export async function updateUserStats(
     userId: string,
     payload: UpdateStatsPayload,
-    token: string
+    token?: string
 ): Promise<UserStats> {
-    const response = await api.put<UserStats>(`/auth/v1/stats/${userId}`, payload, {
-        headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await api.put<UserStats>(`/auth/v1/stats/${userId}`, payload);
     return response.data;
 }

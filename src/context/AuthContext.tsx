@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { login as apiLogin, register as apiRegister } from '@/integration/authIntegration';
+import { login as apiLogin, register as apiRegister } from '@/@types/authIntegration';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -71,9 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setIsAuthenticated(true);
 
             await AsyncStorage.multiSet([
-                ['@Auth:user', data.username],
                 ['@Auth:userId', data.userId],
-                ['@Auth:token', data.token],
             ]);
 
             return { success: true };
