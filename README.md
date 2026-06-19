@@ -19,7 +19,7 @@ Aplicativo multiplataforma de Pokémon desenvolvido com **React Native + Expo Ro
 
 | Campo | Valor |
 |-------|-------|
-| Usuário | `gibsemari` |
+| Usuário | `gibsemari2309` |
 | Senha | `Pipoca@pipoca` |
 
 > Ou crie uma conta nova pela tela de **Cadastro**.
